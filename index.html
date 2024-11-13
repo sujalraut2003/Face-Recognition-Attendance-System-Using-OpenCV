@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Container Styles */
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            margin-right: 10px;
+            transition: border 0.3s ease;
+        }
+
+        input[type="date"]:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+        }
+
+        td {
+            padding: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #555;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            input[type="date"] {
+                width: 150px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Attendance List</h1>
+
+        <!-- Filter Form -->
+        <form method="GET" action="/">
+            <label for="date">Filter by Date:</label>
+            <input type="date" name="date" id="date" />
+            <button type="submit">Filter</button>
+        </form>
+
+        <!-- Attendance Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in attendance %}
+                <tr>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.time }}</td>
+                    <td>{{ record.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Footer -->
+        <footer>
+            <p>Powered by <a href="https://github.com" target="_blank">Your GitHub</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>
